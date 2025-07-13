@@ -7,9 +7,10 @@
     "b": "pnpm --filter @ideanick/backend",
     "w": "pnpm --filter @ideanick/webapp",
     "dev": "pnpm -r --parallel dev",
-    "types": "concurrently \"pnpm b typecheck\" \"pnpm w typecheck\"",
+    "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
     "lint": "concurrently \"pnpm b lint\" \"pnpm w lint\"",
-    "prettify": "pnpm  -r --parallel prettify"
+    "prettify": "pnpm  -r --parallel prettify",
+    "prepare": "husky"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",
@@ -21,6 +22,8 @@
     "eslint-plugin-prettier": "^5.5.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "prettier": "^3.5.3",
     "prettier-eslint": "^16.4.2",
     "rimraf": "^6.0.1",
