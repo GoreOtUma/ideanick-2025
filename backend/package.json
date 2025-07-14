@@ -5,6 +5,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.0",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^22.13.4"
   },
   "scripts": {
@@ -13,11 +14,13 @@
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
-    "prettify": "prettier --log-level warn --cache --write \"src/**/*.{ts,tsx,js,json,yml,scss}\" \"!**/{node_modules,dist}/**/*\""
+    "prettify": "prettier --loglevel warn --cache --write \"src/**/*.{ts,tsx,js,json,yml,scss}\" \"!**/{node_modules,dist}/**/*\""
   },
   "dependencies": {
     "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "lodash": "^4.17.21",
+    "zod": "^4.0.5"
   }
 }
