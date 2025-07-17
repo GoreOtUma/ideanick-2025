@@ -34,5 +34,10 @@
   },
   "overrides": {
     "eslint": "9.20.0"
+  },
+  "dependencies": {
+    "formik": "^2.4.6",
+    "formik-validator-zod": "^2.2.0",
+    "zod": "^4.0.5"
   }
 }
