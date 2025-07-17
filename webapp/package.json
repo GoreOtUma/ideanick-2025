@@ -9,6 +9,8 @@
     "lint": "eslint . --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts,.tsx",
     "preview": "vite preview",
     "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.node.json && tsc --noEmit --project ./tsconfig.app.json",
+    "stylelint": "stylelint --cache --cache-location ./node_modules/.cache/.stylelintcache src/**/*.scss",
+    "stylecheck": "sass -q ./src:./node_modules/.cache/.stylecheckcache",
     "prettify": "prettier --loglevel warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
   },
   "dependencies": {
@@ -30,6 +32,9 @@
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "8.47.0",
     "prettier": "^3.0.1",
+    "stylelint": "^16.21.1",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^15.0.1",
     "vite": "^4.4.5"
   }
 }
