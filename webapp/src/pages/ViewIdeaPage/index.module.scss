@@ -1,5 +1,10 @@
-@use '../../styles/vars.scss' as *;
-@use '../../styles/mixins.scss' as *;
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+.createdAt {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
 
 .text {
   font-size: 14px;
