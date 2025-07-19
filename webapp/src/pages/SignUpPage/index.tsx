@@ -1,16 +1,21 @@
 import { zSignUpTrpcInput } from '@ideanick/backend/src/router/signUp/input'
 import { useFormik } from 'formik'
 import { withZodSchema } from 'formik-validator-zod'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Alert } from '../../components/Alert'
 import { Button } from '../../components/Button'
 import { FormItems } from '../../components/FormItems'
 import { Input } from '../../components/Input'
 import { Segment } from '../../components/Segment'
+import { getAllIdeasRoute } from '../../lib/routes'
 import { trpc } from '../../lib/trpc'
 
 export const SignUpPage = () => {
+  const navigate = useNavigate()
+  const trpcUtils = trpc.useContext()
   const [successMessageVisible, setSuccessMessageVisible] = useState(false)
   const [submittingError, setSubmittingError] = useState<string | null>(null)
   const signUp = trpc.signUp.useMutation()
@@ -38,6 +43,10 @@ export const SignUpPage = () => {
     onSubmit: async (values) => {
       try {
         setSubmittingError(null)
+        const { token } = await signUp.mutateAsync(values)
+        Cookies.set('token', token, { expires: 99999 })
+        void trpcUtils.invalidate()
+        navigate(getAllIdeasRoute())
         await signUp.mutateAsync(values)
         formik.resetForm()
         setSuccessMessageVisible(true)
