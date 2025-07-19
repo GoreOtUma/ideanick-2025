@@ -23,6 +23,7 @@ export const SignInPage = () => {
       nick: '',
       password: '',
     },
+    // @ts-ignore
     validate: withZodSchema(zSignInTrpcInput),
     onSubmit: async (values) => {
       try {

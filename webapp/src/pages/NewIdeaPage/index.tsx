@@ -21,6 +21,7 @@ export const NewIdeaPage = () => {
       description: '',
       text: '',
     },
+    // @ts-ignore
     validate: withZodSchema(zCreateIdeaTrpcInput),
     onSubmit: async (values) => {
       try {

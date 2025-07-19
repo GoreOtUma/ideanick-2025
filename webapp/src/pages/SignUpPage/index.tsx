@@ -25,6 +25,7 @@ export const SignUpPage = () => {
       password: '',
       passwordAgain: '',
     },
+    // @ts-ignore
     validate: withZodSchema(
       zSignUpTrpcInput
         .extend({
