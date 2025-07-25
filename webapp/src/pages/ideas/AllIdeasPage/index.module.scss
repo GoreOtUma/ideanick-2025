@@ -1,6 +1,10 @@
 @use '../../../styles/vars.scss' as *;
 @use '../../../styles/mixins.scss' as *;
 
+.filter {
+  margin-bottom: 20px;
+}
+
 .ideas {
   .idea {
     padding: 20px;
