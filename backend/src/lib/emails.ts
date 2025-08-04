@@ -5,6 +5,7 @@ import { type Idea, type User } from '@prisma/client'
 import fg from 'fast-glob'
 import Handlebars from 'handlebars'
 import _ from 'lodash'
+import { sendEmailThroughBrevo } from './brevo'
 import { env } from './env'
 
 const getHbrTemplates = _.memoize(async () => {
@@ -43,12 +44,13 @@ const sendEmail = async ({
       homeUrl: env.WEBAPP_URL,
     }
     const html = await getEmailHtml(templateName, fullTemplateVaraibles)
-
+    const { loggableResponse } = await sendEmailThroughBrevo({ to, html, subject })
     console.info('sendEmail', {
       to,
       subject,
       templateName,
-      html,
+      templateVariables,
+      response: loggableResponse,
     })
     return { ok: true }
   } catch (error) {
@@ -64,7 +66,7 @@ export const sendWelcomeEmail = async ({ user }: { user: Pick<User, 'nick' | 'em
     templateName: 'welcome',
     templateVariables: {
       userNick: user.nick,
-      addIdeaUrl: `${env.WEBAPP_URL}${getNewIdeaRoute()}`,
+      addIdeaUrl: `${getNewIdeaRoute({ abs: true })}`,
     },
   })
 }
