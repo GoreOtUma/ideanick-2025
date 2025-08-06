@@ -1,0 +1,16 @@
+{
+  "name": "@ideanick/shared",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "types": "tsc --noEmit --project ./tsconfig.json",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
+    "prettify": "prettier --log-level warn --cache --write \"src/**/*.{ts,tsx,js,json,yml,scss}\" \"!**/{node_modules,dist}/**/*\""
+  },
+  "dependencies": {
+    "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.4"
+  }
+}

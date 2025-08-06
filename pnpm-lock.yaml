@@ -93,6 +93,9 @@ importers:
 
   backend:
     dependencies:
+      '@ideanick/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@ideanick/webapp':
         specifier: workspace:*
         version: link:../webapp
@@ -185,11 +188,24 @@ importers:
         specifier: ^6.12.0
         version: 6.12.0(typescript@5.8.3)
 
+  shared:
+    dependencies:
+      zod:
+        specifier: ^4.0.5
+        version: 4.0.5
+    devDependencies:
+      '@types/node':
+        specifier: 22.13.4
+        version: 22.13.4
+
   webapp:
     dependencies:
       '@ideanick/backend':
         specifier: workspace:*
         version: link:../backend
+      '@ideanick/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@tanstack/react-query':
         specifier: ^4.18.0
         version: 4.40.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1551,6 +1567,9 @@ packages:
 
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
+
+  '@types/node@22.13.4':
+    resolution: {integrity: sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==}
 
   '@types/node@22.16.5':
     resolution: {integrity: sha512-bJFoMATwIGaxxx8VJPeM8TonI8t579oRvgAuT8zFugJsJZgzqv0Fu8Mhp68iecjzG7cnN3mO2dJQ5uUM2EFrgQ==}
@@ -4635,6 +4654,9 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
@@ -6208,15 +6230,15 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
 
   '@types/cron@2.4.3':
     dependencies:
@@ -6226,7 +6248,7 @@ snapshots:
 
   '@types/express-serve-static-core@5.0.7':
     dependencies:
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
       '@types/qs': 6.14.0
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.5
@@ -6253,7 +6275,7 @@ snapshots:
   '@types/jsonwebtoken@9.0.10':
     dependencies:
       '@types/ms': 2.1.0
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
 
   '@types/lodash@4.17.20': {}
 
@@ -6262,6 +6284,10 @@ snapshots:
   '@types/mime@1.3.5': {}
 
   '@types/ms@2.1.0': {}
+
+  '@types/node@22.13.4':
+    dependencies:
+      undici-types: 6.20.0
 
   '@types/node@22.16.5':
     dependencies:
@@ -6307,12 +6333,12 @@ snapshots:
   '@types/send@0.17.5':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
 
   '@types/serve-static@1.15.8':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 22.16.5
+      '@types/node': 22.13.4
       '@types/send': 0.17.5
 
   '@types/strip-bom@3.0.0': {}
@@ -10080,6 +10106,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici-types@6.20.0: {}
 
   undici-types@6.21.0: {}
 
