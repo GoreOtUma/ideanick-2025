@@ -15,13 +15,14 @@
     "@types/triple-beam": "^1.3.5",
     "chokidar": "^4.0.3",
     "eslint-plugin-node": "^11.1.0",
-    "prisma": "^6.12.0"
+    "prisma": "^6.12.0",
+    "tsc-alias": "^1.8.16"
   },
   "scripts": {
     "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
     "build-emails": "rimraf src/emails/dist && mkdirp src/emails/dist && mjml src/emails/[!_]*.mjml -o src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
-    "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
+    "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json && tsc-alias",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
     "start": "node ./dist/backend/src/index.js",
     "pmd": "prisma migrate dev",
@@ -38,6 +39,7 @@
     "@ideanick/shared": "workspace:*",
     "@ideanick/webapp": "workspace:*",
     "@prisma/client": "^6.12.0",
+    "@sentry/node": "^10.3.0",
     "@trpc/server": "^10.45.2",
     "axios": "^1.11.0",
     "cors": "^2.8.5",
@@ -53,7 +55,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "picocolors": "^1.1.1",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.30.1",
     "serialize-error": "8.1.0",
     "superjson": "^2.2.2",
     "triple-beam": "^1.4.1",
