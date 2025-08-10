@@ -17,6 +17,7 @@ export const sentryCaptureException = (error: Error) => {
     Sentry.captureException(error)
   }
 }
+
 export const SentryUser = () => {
   const me = useMe()
   useEffect(() => {
