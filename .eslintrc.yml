@@ -1,11 +1,14 @@
 extends:
   - eslint-config-react-app
   - prettier
+  - plugin:jest/recommended
 ignorePatterns:
   - node_modules
   - dist
+  - '*.config.js'
 plugins:
   - node
+  - jest
 rules:
   no-new: off
   import/order:

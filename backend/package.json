@@ -23,6 +23,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
+    "test": "jest",
     "build-emails": "rimraf src/emails/dist && mkdirp src/emails/dist && mjml src/emails/[!_]*.mjml -o src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json && tsc-alias",
