@@ -8,7 +8,7 @@ export const applyCron = (ctx: AppContext) => {
     //'* * * * *', // every minute
     '0 10 1 * *', // At 10:00 on day-of-month 1
     () => {
-      notifyAboutMostLikedIdeas(ctx).catch((error) => {
+      notifyAboutMostLikedIdeas({ ctx }).catch((error) => {
         logger.error('cron', error)
       })
     },
