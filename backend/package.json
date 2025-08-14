@@ -26,7 +26,7 @@
     "test": "jest  --runInBand",
     "build-emails": "rimraf src/emails/dist && mkdirp src/emails/dist && mjml src/emails/[!_]*.mjml -o src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
-    "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json && tsc-alias",
+    "build-ts": "rimraf ./dist && tsc --build ./tsconfig.build.json && tsc-alias",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
     "sentry-release": "dotenv -- cross-env-shell sentry-cli releases new $SOURCE_VERSION --finalize --org university-yf --project backend --auth-token $SENTRY_AUTH_TOKEN",
     "sentry-sourcemaps": "dotenv -- cross-env-shell sentry-cli releases files $SOURCE_VERSION upload-sourcemaps ./dist --org university-yf --project backend",
