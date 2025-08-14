@@ -9,9 +9,11 @@
     "prettify": "prettier --log-level warn --cache --write \"src/**/*.{ts,tsx,js,json,yml,scss}\" \"!**/{node_modules,dist}/**/*\""
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "zod": "^4.0.5"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.20",
     "@types/node": "22.13.4"
   }
 }
