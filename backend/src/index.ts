@@ -33,7 +33,6 @@ void (async () => {
     expressApp.listen(env.PORT, () => {
       logger.info('express', `Listening at http://localhost:${env.PORT}`)
     })
-    throw new Error('Error with sourcemap')
   } catch (error) {
     logger.error('app', error)
     await ctx?.stop()

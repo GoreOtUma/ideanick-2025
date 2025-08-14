@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
-    "test": "jest",
+    "test": "jest  --runInBand",
     "build-emails": "rimraf src/emails/dist && mkdirp src/emails/dist && mjml src/emails/[!_]*.mjml -o src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json && tsc-alias",
@@ -52,6 +52,7 @@
     "axios": "^1.11.0",
     "cors": "^2.8.5",
     "cron": "^4.3.3",
+    "date-fns": "^4.1.0",
     "debug": "^4.4.1",
     "dotenv": "^17.2.0",
     "express": "^4.21.2",
