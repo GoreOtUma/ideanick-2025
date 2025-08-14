@@ -1,6 +1,7 @@
 import { type Idea, type User } from '@prisma/client'
 import _ from 'lodash'
 import { createAppContext } from '../lib/ctx'
+import { env } from '../lib/env'
 import { getTrpcContext } from '../lib/trpc'
 import { trpcRouter } from '../router'
 import { deepMap } from '../utils/deepMap'
@@ -9,6 +10,9 @@ import { type ExpressRequest } from '../utils/types'
 
 export const appContext = createAppContext()
 
+if (env.NODE_ENV !== 'test') {
+  throw new Error('Run integration tests only with NODE_ENV=test')
+}
 afterAll(appContext.stop)
 
 beforeEach(async () => {

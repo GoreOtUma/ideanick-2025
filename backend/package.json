@@ -22,7 +22,7 @@
     "tsc-alias": "^1.8.16"
   },
   "scripts": {
-    "dev": "ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --watch ./src/emails/dist,./.env --rs --exit-child ./src/index.ts",
     "test": "jest  --runInBand",
     "build-emails": "rimraf src/emails/dist && mkdirp src/emails/dist && mjml src/emails/[!_]*.mjml -o src/emails/dist",
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
@@ -31,8 +31,9 @@
     "sentry-release": "dotenv -- cross-env-shell sentry-cli releases new $SOURCE_VERSION --finalize --org university-yf --project backend --auth-token $SENTRY_AUTH_TOKEN",
     "sentry-sourcemaps": "dotenv -- cross-env-shell sentry-cli releases files $SOURCE_VERSION upload-sourcemaps ./dist --org university-yf --project backend",
     "sentry": "pnpm sentry-release && pnpm sentry-sourcemaps",
-    "start": "node ./dist/backend/src/index.js",
+    "start": "cross-env NODE_ENV=production node ./dist/backend/src/index.js",
     "pmd": "prisma migrate dev",
+    "pmt": "dotenv -e ./.env.test prisma migrate deploy",
     "pgc": "prisma generate",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
