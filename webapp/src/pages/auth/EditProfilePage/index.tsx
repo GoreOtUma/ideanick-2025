@@ -7,6 +7,7 @@ import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
 import { Input } from '../../../components/Input'
 import { Segment } from '../../../components/Segment'
+import { UploadToCloudinary } from '../../../components/UploadToCloudinary'
 import { useForm } from '../../../lib/form'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
@@ -18,12 +19,12 @@ const General = ({ me }: { me: NonNullable<TrpcRouterOutput['getMe']['me']> }) =
     initialValues: {
       nick: me.nick,
       name: me.name,
+      avatar: me.avatar,
     },
     validationSchema: zUpdateProfileTrpcInput,
     onSubmit: async (values) => {
       const updatedMe = await updateProfile.mutateAsync(values)
       trpcUtils.getMe.setData(undefined, { me: updatedMe })
-      throw new Error('Mine')
     },
     successMessage: 'Profile updated',
     resetOnSuccess: false,
@@ -33,6 +34,7 @@ const General = ({ me }: { me: NonNullable<TrpcRouterOutput['getMe']['me']> }) =
       <FormItems>
         <Input label='Nick' name='nick' formik={formik} />
         <Input label='Name' name='name' formik={formik} />
+        <UploadToCloudinary label='Avatar' name='avatar' type='avatar' preset='big' formik={formik} />
         <Alert {...alertProps} />
         <Button {...buttonProps}>Update Profile</Button>
       </FormItems>
