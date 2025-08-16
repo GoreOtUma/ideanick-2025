@@ -1,7 +1,6 @@
-import path from 'path'
-import { RewriteFrames } from '@sentry/integrations'
-import * as Sentry from '@sentry/node'
 import { env } from './env'
+import path from 'path'
+import * as Sentry from '@sentry/node'
 import { type LoggerMetaData } from './logger'
 
 const isSentryEnabled = env.BACKEND_SENTRY_DSN
@@ -14,7 +13,7 @@ export const initSentry = () => {
       release: env.SOURCE_VERSION,
       normalizeDepth: 10,
       integrations: [
-        new RewriteFrames({
+        Sentry.rewriteFramesIntegration({
           root: path.resolve(__dirname, '../../..'),
         }),
       ],

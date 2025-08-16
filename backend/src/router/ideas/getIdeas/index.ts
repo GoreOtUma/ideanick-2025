@@ -1,5 +1,4 @@
 import { omit } from '@ideanick/shared/src/omit'
-import _ from 'lodash'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zGetIdeasTrpcInput } from './input'
 

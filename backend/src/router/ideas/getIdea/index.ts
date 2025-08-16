@@ -1,5 +1,4 @@
 import { omit } from '@ideanick/shared/src/omit'
-import _ from 'lodash'
 import { ExpectedError } from '../../../lib/error'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zGetIdeaTrpcInput } from './input'
