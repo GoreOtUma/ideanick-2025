@@ -10,6 +10,7 @@ import { useForm } from '../../../lib/form'
 import { mixpanelAlias, mixpanelIdentify, mixpanelTrackSignUp } from '../../../lib/mixpanel'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
+import { trackEvent } from '../../../lib/yandexMetrika'
 
 export const SignUpPage = withPageWrapper({
   redirectAuthorized: true,
@@ -32,6 +33,7 @@ export const SignUpPage = withPageWrapper({
 
     onSubmit: async (values) => {
       const { token, userId } = await signUp.mutateAsync(values)
+      trackEvent('Signup')
       mixpanelAlias(userId)
       mixpanelIdentify(userId)
       mixpanelTrackSignUp()

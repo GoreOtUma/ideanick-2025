@@ -15,6 +15,7 @@ import { mixpanelSetIdeaLike } from '../../../lib/mixpanel'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { getEditIdeaRoute, getViewIdeaRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
+import { trackEvent } from '../../../lib/yandexMetrika'
 import css from './index.module.scss'
 
 const LikeButton = ({ idea }: { idea: NonNullable<TrpcRouterOutput['getIdea']['idea']> }) => {
@@ -46,6 +47,7 @@ const LikeButton = ({ idea }: { idea: NonNullable<TrpcRouterOutput['getIdea']['i
           .mutateAsync({ ideaId: idea.id, isLikedByMe: !idea.isLikedByMe })
           .then(({ idea: { isLikedByMe } }) => {
             if (isLikedByMe) {
+              trackEvent('Like')
               mixpanelSetIdeaLike(idea)
             }
           })

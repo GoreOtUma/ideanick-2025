@@ -9,6 +9,7 @@ import { useForm } from '../../../lib/form'
 import { mixpanelIdentify, mixpanelTrackSignIn } from '../../../lib/mixpanel'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
+import { trackEvent } from '../../../lib/yandexMetrika'
 
 export const SignInPage = withPageWrapper({
   redirectAuthorized: true,
@@ -24,6 +25,7 @@ export const SignInPage = withPageWrapper({
     validationSchema: zSignInTrpcInput,
     onSubmit: async (values) => {
       const { token, userId } = await signIn.mutateAsync(values)
+      trackEvent('Signin')
       mixpanelIdentify(userId)
       mixpanelTrackSignIn()
       Cookies.set('token', token, { expires: 99999 })
