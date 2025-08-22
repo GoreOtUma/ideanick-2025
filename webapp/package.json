@@ -42,7 +42,7 @@
     "react-router-dom": "^7.6.3",
     "reset-css": "^5.0.2",
     "sass": "^1.89.2",
-    "superjson": "^2.2.2",
+    "superjson": "^1.13.1",
     "usehooks-ts": "^3.1.1",
     "zod": "^4.0.5"
   },

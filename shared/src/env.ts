@@ -10,9 +10,9 @@ const getSharedEnvVariable = (key: string) =>
   windowEnv[`VITE_${key}`] || windowEnv[key] || process.env[`VITE_${key}`] || process.env[key]
 
 const sharedEnvRaw = {
-  CLOUDINARY_CLOUD_NAME: process.env.VITE_CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME,
-  S3_URL: process.env.VITE_S3_URL || process.env.S3_URL,
-  WEBAPP_URL: process.env.VITE_WEBAPP_URL || process.env.WEBAPP_URL,
+  CLOUDINARY_CLOUD_NAME: getSharedEnvVariable('CLOUDINARY_CLOUD_NAME'),
+  S3_URL: getSharedEnvVariable('S3_URL'),
+  WEBAPP_URL: getSharedEnvVariable('WEBAPP_URL'),
   S3_BUCKET_NAME: getSharedEnvVariable('S3_BUCKET_NAME'),
 }
 
