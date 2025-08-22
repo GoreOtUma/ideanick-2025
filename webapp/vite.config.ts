@@ -5,9 +5,20 @@ import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 import { parsePublicEnv } from './src/lib/parsePublicEnv'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const publicEnv = parsePublicEnv(env)
+
+  // Динамический импорт для legacy плагина
+  let legacyPlugin: any = null
+  try {
+    const legacyModule = await import('@vitejs/plugin-legacy')
+    legacyPlugin = legacyModule.default({
+      targets: ['> 0.01%'],
+    })
+  } catch (error) {
+    console.warn('Failed to load @vitejs/plugin-legacy:', error)
+  }
 
   if (env.HOST_ENV !== 'local') {
     if (!env.SENTRY_AUTH_TOKEN) {
@@ -22,6 +33,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       svgr(),
+      legacyPlugin, // Добавляем плагин, если он загрузился
       env.HOST_ENV !== 'local'
         ? undefined
         : visualizer({
@@ -37,7 +49,7 @@ export default defineConfig(({ mode }) => {
             authToken: env.SENTRY_AUTH_TOKEN,
             release: { name: env.SOURCE_VERSION },
           }),
-    ],
+    ].filter(Boolean), // Фильтруем undefined плагины
     build: {
       sourcemap: true,
       chunkSizeWarningLimit: 900,
